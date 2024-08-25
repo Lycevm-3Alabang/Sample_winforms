@@ -10,7 +10,7 @@
             {
                 if (_items == null)
                 {
-                    _items = new List<Item>();
+                    _items = [];
                 }
 
                 return _items;

@@ -20,8 +20,10 @@ namespace WinForms.App
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var upsertItemForm = new UpsertItemForm();
-            upsertItemForm.Name = "UpsertItemForm";
+            UpsertItemForm upsertItemForm = new()
+            {
+                Name = "UpsertItemForm"
+            };
             upsertItemForm.ShowDialog(this);
 
             ResetDataGridView();
@@ -29,7 +31,7 @@ namespace WinForms.App
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            var items = Service.InventoryManager.Items;
+            var items = InventoryManager.Items;
             var filteredList = items.Where(i => i.Name.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) || i.Code.Equals(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
 
             ResetDataGridView(filteredList);
@@ -38,17 +40,12 @@ namespace WinForms.App
 
         private void InventoryForm_Load(object sender, EventArgs e)
         {
-            ResetDataGridView();
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 column.Visible = true;
                 column.Width = 100; // Adjust as needed
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            ResetDataGridView();
         }
 
         private void ResetDataGridView(IEnumerable<Item>? items = null)
@@ -64,23 +61,23 @@ namespace WinForms.App
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
             dataGridView1.Columns["Id"].Visible = false;
-
         }
 
-        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // Ensure a valid row was clicked
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
 
-                var item = InventoryManager.Items.Single(i => i.Code == selectedRow.Cells["Code"]?.Value.ToString());
+                Item item = InventoryManager.Items.Single(i => i.Code == selectedRow.Cells["Code"]?.Value.ToString());
 
-                var upsertItemForm = new UpsertItemForm(item);
-                upsertItemForm.Name = "UpsertItemForm";
+                UpsertItemForm upsertItemForm = new(item)
+                {
+                    Name = "UpsertItemForm"
+                };
                 upsertItemForm.ShowDialog(this);
 
                 ResetDataGridView();
-
             }
         }
     }

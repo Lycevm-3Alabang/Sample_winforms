@@ -107,6 +107,7 @@ namespace WinForms.App
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(383, 16);
             textBox3.TabIndex = 3;
+            textBox3.Text = "0.00";
             // 
             // label3
             // 

@@ -7,7 +7,7 @@ namespace WinForms.App
             InitializeComponent();
         }
 
-        private void inventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.MdiChildren.Any())
             {
@@ -20,9 +20,5 @@ namespace WinForms.App
             form.Show();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

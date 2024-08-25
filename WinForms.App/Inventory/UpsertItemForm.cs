@@ -9,6 +9,10 @@ namespace WinForms.App
         {
             InitializeComponent();
             _id = null;
+            this.Controls.OfType<Panel>()
+               .SelectMany(panel => panel.Controls.OfType<TextBox>())
+               .ToList()
+               .ForEach(textBox => textBox.CharacterCasing = CharacterCasing.Upper);
         }
 
         public UpsertItemForm(Item itemToEdit) : this()

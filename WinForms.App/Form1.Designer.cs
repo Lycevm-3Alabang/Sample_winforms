@@ -48,7 +48,7 @@
             inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
             inventoryToolStripMenuItem.Size = new Size(69, 20);
             inventoryToolStripMenuItem.Text = "Inventory";
-            inventoryToolStripMenuItem.Click += inventoryToolStripMenuItem_Click;
+            inventoryToolStripMenuItem.Click += InventoryToolStripMenuItem_Click;
             // 
             // pointofSaleToolStripMenuItem
             // 
@@ -70,7 +70,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
-            Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
