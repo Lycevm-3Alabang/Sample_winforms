@@ -63,7 +63,7 @@ namespace WinForms.App
             // Ensure rows are selectable
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
-
+            dataGridView1.Columns["Id"].Visible = false;
 
         }
 

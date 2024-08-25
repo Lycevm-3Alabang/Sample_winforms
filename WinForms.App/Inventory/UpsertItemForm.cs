@@ -25,7 +25,7 @@ namespace WinForms.App
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show(Text, "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.No)
+            if(MessageBox.Show("Are you sure?", "Prompt", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 return;
             }
