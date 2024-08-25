@@ -48,29 +48,24 @@ namespace WinForms.App
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check for valid row index
-            if (e.RowIndex >= 0 && e.RowIndex < Service.InventoryManager.Items.Count)
-            {
-                var selectedItem = Service.InventoryManager.Items.ToArray()[e.RowIndex];
-                // ... (your logic to handle the selected item)
-            }
-            else
-            {
-                // Handle invalid index (e.g., show an error message)
-                MessageBox.Show("Invalid row index.");
-            }
+          
         }
 
         private void ResetDataGridView(IEnumerable<Item>? items = null)
         {
-            if(items == null)
+            if (items == null)
             {
-                items = Service.InventoryManager.Items;
+                items = InventoryManager.Items;
             }
-            this.dataGridView1.DataSource = null;
-            this.dataGridView1.DataSource = items;
-            this.dataGridView1.ClearSelection();
-            this.dataGridView1.Refresh();
+
+            this.dataGridView1.DataSource = items.ToList();
+
+            // Ensure rows are selectable
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
+
+     
         }
+
     }
 }

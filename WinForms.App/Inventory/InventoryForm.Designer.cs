@@ -40,7 +40,6 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Enabled = false;
             dataGridView1.Location = new Point(9, 101);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";

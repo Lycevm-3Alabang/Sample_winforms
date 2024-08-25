@@ -77,7 +77,7 @@ namespace WinForms.App
             button3.Location = new Point(381, 164);
             button3.Name = "button3";
             button3.Size = new Size(107, 31);
-            button3.TabIndex = 4;
+            button3.TabIndex = 6;
             button3.Text = "&Cancel";
             button3.UseVisualStyleBackColor = true;
             button3.Click += Button3_Click_2;
