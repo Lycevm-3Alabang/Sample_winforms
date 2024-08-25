@@ -48,7 +48,7 @@ namespace WinForms.App
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
 
         private void ResetDataGridView(IEnumerable<Item>? items = null)
@@ -64,8 +64,24 @@ namespace WinForms.App
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
 
-     
+
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row was clicked
+            {
+                DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+
+                var item = InventoryManager.Items.Single(i => i.Code == selectedRow.Cells["Code"]?.Value.ToString());
+
+                var upsertItemForm = new UpsertItemForm(item);
+                upsertItemForm.Name = "UpsertItemForm";
+                upsertItemForm.ShowDialog(this);
+
+                ResetDataGridView();
+
+            }
+        }
     }
 }
