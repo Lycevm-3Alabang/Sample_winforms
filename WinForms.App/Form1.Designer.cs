@@ -55,6 +55,7 @@
             pointofSaleToolStripMenuItem.Name = "pointofSaleToolStripMenuItem";
             pointofSaleToolStripMenuItem.Size = new Size(89, 20);
             pointofSaleToolStripMenuItem.Text = "Point-of-Sale";
+            pointofSaleToolStripMenuItem.Click += PointofSaleToolStripMenuItem_Click;
             // 
             // Form1
             // 

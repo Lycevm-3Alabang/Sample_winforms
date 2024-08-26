@@ -56,7 +56,7 @@
             button1.Name = "button1";
             button1.Size = new Size(116, 31);
             button1.TabIndex = 1;
-            button1.Text = "&Add New Item";
+            button1.Text = "&Add New Product";
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
             // 

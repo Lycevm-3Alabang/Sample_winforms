@@ -18,6 +18,8 @@ namespace WinForms.App
             InitializeComponent();
         }
 
+        #region Events
+
         private void Button1_Click(object sender, EventArgs e)
         {
             UpsertItemForm upsertItemForm = new()
@@ -31,8 +33,8 @@ namespace WinForms.App
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            var items = InventoryManager.Items;
-            var filteredList = items.Where(i => i.Name.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) || i.Code.Equals(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var items = InventoryManager.GetProducts();
+            Product[]? filteredList = items?.Where(i => i.Name.Contains(txtSearch.Text, StringComparison.OrdinalIgnoreCase) || i.Code.Equals(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToArray();
 
             ResetDataGridView(filteredList);
 
@@ -48,20 +50,6 @@ namespace WinForms.App
             ResetDataGridView();
         }
 
-        private void ResetDataGridView(IEnumerable<Item>? items = null)
-        {
-            if (items == null)
-            {
-                items = InventoryManager.Items;
-            }
-
-            this.dataGridView1.DataSource = items.ToList();
-
-            // Ensure rows are selectable
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
-            dataGridView1.Columns["Id"].Visible = false;
-        }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -69,7 +57,7 @@ namespace WinForms.App
             {
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
 
-                Item item = InventoryManager.Items.Single(i => i.Code == selectedRow.Cells["Code"]?.Value.ToString());
+                Product? item = InventoryManager.GetProducts()?.Single(i => i.Code == selectedRow.Cells["Code"]?.Value.ToString());
 
                 UpsertItemForm upsertItemForm = new(item)
                 {
@@ -79,6 +67,20 @@ namespace WinForms.App
 
                 ResetDataGridView();
             }
+        }
+
+        #endregion
+
+        private void ResetDataGridView(IEnumerable<Product>? items = null)
+        {
+            items ??= InventoryManager.GetProducts();
+
+            dataGridView1.DataSource = items?.ToList() ?? [];
+
+            // Ensure rows are selectable
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false; // Prevent multiple row selection if needed
+            dataGridView1.Columns["Id"].Visible = false;
         }
     }
 }

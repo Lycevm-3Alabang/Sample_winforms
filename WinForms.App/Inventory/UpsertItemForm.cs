@@ -15,7 +15,7 @@ namespace WinForms.App
                .ForEach(textBox => textBox.CharacterCasing = CharacterCasing.Upper);
         }
 
-        public UpsertItemForm(Item itemToEdit) : this()
+        public UpsertItemForm(Product itemToEdit) : this()
         {
            
             textBox1.Text = itemToEdit.Name;
@@ -36,14 +36,14 @@ namespace WinForms.App
 
             if (_id != null)
             {
-                var item = InventoryManager.Items.Single(i => i.Id == _id);
+                var item = InventoryManager.GetProducts().Single(i => i.Id == _id);
                 item.Name = textBox1.Text;
                 item.Code = textBox2.Text;
                 item.Price = decimal.Parse(textBox3.Text);
                 item.Description = textBox4.Text;
             }else
             {
-                InventoryManager.Items.Add(new Service.Item
+                InventoryManager.AddProduct(new Product
                 {
                     Id = Guid.NewGuid(),
                     Name = textBox1.Text,
