@@ -2,30 +2,20 @@
 {
     public static class InventoryManager
     {
-        static ICollection<Item>? _items;
+        static ICollection<Product>? _items;
 
-        public static ICollection<Item> Items
+        public static IEnumerable<Product>? GetProducts()
         {
-            get
-            {
-                if (_items == null)
-                {
-                    _items = [];
-                }
+            if (_items == null) _items = [];
+            return _items;
+        }
 
-                return _items;
-            }
+        public static void AddProduct(Product item)
+        {
+            _items ??= [];
+            _items.Add(item);
         }
 
 
-    }
-
-    public class Item
-    {
-        public Guid Id { get; set; }
-        public string? Name { get; set; } = string.Empty;
-        public string? Description { get; set; } = string.Empty;
-        public decimal Price { get; set; } = 0M;
-        public string? Code { get; set; } = string.Empty;
     }
 }
